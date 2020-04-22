@@ -41,7 +41,7 @@ is mentioned in a pull request.
 ## Example usage
 
 ```yaml
-uses: actions/update-monday-status-action@v1
+uses: willstenzel/update-monday-status-action@v1
 with:
   API_TOKEN: ${{ secrets.API_TOKEN }}
   BOARD_ID: 524963988
