@@ -41,14 +41,27 @@ is mentioned in a pull request.
 ## Example usage
 
 ```yaml
-uses: willstenzel/update-monday-status-action@v1.0
-with:
-  API_TOKEN: ${{ secrets.API_TOKEN }}
-  BOARD_ID: 524963988
-  COLUMN_ID: "status"
-  submitted-status: "PR Submitted"
-  merged-status: "Done"
-  pull-request-body: ${{ github.event.pull_request.body }}
-  merged: ${{ github.event.pull_request.merged }}
-if: contains(github.event.pull_request.body, 'pulses')
+name: Update Monday.com Status
+on:
+  pull_request:
+    types:
+      [opened, closed]
+    branches:
+      - master
+jobs:
+  update_monday_status:
+    runs-on: ubuntu-latest
+    name: Update Monday Status
+    steps:
+    - name: Call Monday.com API
+      uses: willstenzel/update-monday-status-action@v1.0
+      with:
+        API_TOKEN: ${{ secrets.API_TOKEN }}
+        BOARD_ID: 524963988
+        COLUMN_ID: "status"
+        submitted-status: "PR Submitted"
+        merged-status: "Done"
+        pull-request-body: ${{ github.event.pull_request.body }}
+        merged: ${{ github.event.pull_request.merged }}
+      if: contains(github.event.pull_request.body, 'pulses')
 ```
