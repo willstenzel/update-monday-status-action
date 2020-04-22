@@ -1,0 +1,28 @@
+name: 'Update Monday.com Status Action'
+description: 'Update Monday.com pulse status from url in the pull request body'
+inputs:
+  API_TOKEN:
+    description: 'Monday.com API v2 Token'
+    required: true
+  BOARD_ID:
+    description: 'Unique board identifier'
+    required: true
+  COLUMN_ID:
+    description: 'Column identifier'
+    required: true
+    default: 'status'
+  submitted-status:
+    description: 'Monday.com status when pull request has been submitted'
+    required: true
+  merged-status:
+    description: 'Monday.com status when pull request has been merged'
+    required: true
+  pull-request-body:
+    description: 'Pull request body'
+    required: true
+  merged:
+    description: 'True if the pull request has been merged, false if not'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
