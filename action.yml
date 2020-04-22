@@ -23,6 +23,11 @@ inputs:
   merged:
     description: 'True if the pull request has been merged, false if not'
     required: true
+    
 runs:
   using: 'node12'
   main: 'dist/index.js'
+  
+branding:
+  icon: 'check'
+  color: 'green'
